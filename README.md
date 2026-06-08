@@ -1,5 +1,3 @@
-Here is a clean, modern, and highly scannable README.md template for your GitHub page. It uses standard GitHub Markdown conventions, badges, and structure to make Proton Punch look polished and professional to developers and users alike.
-
 # Proton Punch 🥊
 The All-in-One Linux Performance Powerhouse
 Proton Punch is a cutting-edge, system-wide optimization utility designed to unlock your hardware's true potential. Built for Linux gamers, power users, and enthusiasts, it consolidates a massive array of fragmented kernel, memory, and hardware tuning tools into a single, cohesive ecosystem.
