@@ -1,55 +1,51 @@
-# Proton Punch 🥊
-The All-in-One Linux Performance Powerhouse
-Proton Punch is a cutting-edge, system-wide optimization utility designed to unlock your hardware's true potential. Built for Linux gamers, power users, and enthusiasts, it consolidates a massive array of fragmented kernel, memory, and hardware tuning tools into a single, cohesive ecosystem.
-
-By decoupling the high-privilege system modifications from the user interface, Proton Punch gives you absolute control over your machine safely, smoothly, and securely.
+Proton Punch 🥊
+The Ultimate All-in-One Linux Performance Hub
+Proton Punch consolidates fragmented kernel, memory, and hardware tuning tools into a single, cohesive ecosystem. Built for gamers and power users, it unlocks your hardware's true potential without the terminal headache.
 
 🏗️ Split-Agent Architecture
-To ensure universal compatibility across all distributions, Proton Punch is split into two intelligent components:
+Maximum performance, zero security compromises. Proton Punch isolates high-privilege system tweaks from the user interface:
 
-The "Punch" Engine (Backend Daemon): Written in a high-performance, low-level language (Rust/C++). It installs natively or via a universal script, running with the necessary root/polkit privileges to interact directly with your kernel, hardware registers, and systemd.
+The Engine (Backend Daemon): A high-performance Rust/C++ daemon running with native root/polkit privileges to safely manage hardware registers, systemd, and the kernel.
 
-The Control Panel (Frontend GUI): A sleek, modern dashboard that handles all user interaction. Because it communicates with the daemon via a secure local socket or D-Bus API, the GUI can be safely packaged and run anywhere—including sandboxed environments.
+The Control Panel (Frontend GUI): A sleek dashboard communicating via secure local sockets/D-Bus. Run it anywhere, completely sandboxed.
 
-📦 Supported Distribution Formats
-Universal Containers: Flatpak, AppImage
-
-Native System Packages: pacman (Arch), apt (Debian/Ubuntu), dnf (Fedora/RHEL)
+📦 Packages: Flatpak, AppImage | pacman (Arch), dnf (Fedora), apt (Ubuntu/Debian)
 
 ⚡ Key Features
-🎮 Low-Latency & Kernel Twinning
-bpftune Integration: Automates real-time, dynamic kernel network and memory tuning via BPF without manual sysctl guesswork.
+🎮 Low-Latency & Memory Optimization
+Dynamic Tuning: Automated kernel management via bpftune—no manual sysctl guesswork required.
 
-auto-cpufreq & Ananicy-CPP: Eliminates micro-stutters by combining lightweight, dynamic CPU frequency scaling with automated process priority management.
+Stutter Elimination: auto-cpufreq + Ananicy-CPP balance CPU scaling and process priorities on the fly.
 
-Profile Sync Daemon (PSD): Moves heavy application and browser profiles directly into RAM (tmpfs), slashing disk I/O and boosting load speeds.
+RAM-Speed Profiles: Profile Sync Daemon (PSD) moves heavy app data to tmpfs to slash disk I/O.
+
+Intelligent Swap: Automatically configures lightning-fast ZRAM pools using zstd or lz4.
 
 🔌 Hardware Tuning & Overclocking Suite
-GPU Overclocking: Direct sysfs interaction for AMD (ppfeaturemask) and NVML bindings for NVIDIA to safely manage clock offsets and power limits.
+GPU Control: Overclock AMD via sysfs (ppfeaturemask) and NVIDIA via native NVML bindings.
 
-CPU Overclocking & Precision Undervolting: Native interface for AMD Curve Optimizer via ryzen_smu and Intel MSR voltage clamp configurations.
+CPU Undervolting: Precision voltage offsets via AMD Curve Optimizer (ryzen_smu) and Intel MSR clamps.
 
-Memory Profile Management: Reads XMP/EXPO data via dmidecode to ensure your RAM is running at its optimal rated speeds.
+RAM & Cooling: Verify XMP/EXPO ratings via dmidecode and draw custom fan curves mapped straight to hwmon.
 
-Fan Curve Editor: Full manual control and automated profiles mapping directly to your system's hwmon temperature sensors.
+🐧 Custom Kernel Manager
+One-click installation and tracking for performance kernels like CachyOS and Linux-Zen. The backend automatically updates repository hooks and your bootloader (grub, systemd-boot).
 
-🧠 Intelligent Memory Optimization
-ZRAM Automation: Automatically provisions RAM-based compressed swap space using ultra-fast, modern compressors like zstd or lz4 tailored to your hardware.
+🎬 Graphics Driver & Firmware Control Center
+Skip the broken PPAs and terminal chaos. The engine automatically detects your hardware and delivers a flawless, automated graphics stack.
 
-
-🎨 The GUI Layout: "Driver Control Center"This page should provide a clean, automated summary of the user's current hardware stack and a simple interactive way to switch or update drivers.+------------------------------------------------------------+
++------------------------------------------------------------+
 | [⚡] PROTON PUNCH   |   [DRIVER & FIRMWARE]                |
 +------------------------------------------------------------+
 |  Detected Hardware: NVIDIA RTX 4070 / AMD Ryzen 7 7800X3D  |
 |                                                            |
 |  [🟢] NVIDIA Proprietary Driver                             |
 |       Current: v580.126                                    |
-|       [ Option: Switch to Open-Kernel Modules (DKMS) ]    |
-|       [ Option: Toggle Beta Driver Stream (v595.x)  ]      |
+|       [ Switch to Open-Kernel (DKMS) ] [ Toggle Beta Stream ]|
 |                                                            |
 |  [🟢] AMD Radeon / Mesa Stack                              |
 |       Current: Mesa 26.0.5 (Vulkan 1.3)                    |
-|       [ Option: Install Bleeding-Edge Git (Mesa-Git) ]     |
+|       [ Install Bleeding-Edge Mesa-Git ]                   |
 |                                                            |
 |  [🟡] Video Acceleration (VA-API / NVDEC)                 |
 |       Status: Incomplete hardware decoding codecs detected.|
@@ -57,28 +53,10 @@ ZRAM Automation: Automatically provisions RAM-based compressed swap space using 
 +------------------------------------------------------------+
 |  [ Action: Check System Firmware (fwupd) ]                  |
 +------------------------------------------------------------+
+🟢 NVIDIA Suite: Instantly toggle between Stable Production and Beta channels. Autoconfigures /etc/modprobe.d/ for open-source modules and low-latency sync.
 
+🔴 AMD & Mesa Suite: Grab day-one gaming optimizations by linking to bleeding-edge Mesa-Git, and swap between RADV and AMDVLK Vulkan backends on the fly.
 
-🐧 Custom Kernel Manager
-A dedicated control center to easily track, install, and update performance-focused third-party kernels like CachyOS and Linux-Zen. The Punch Engine automatically handles your native repository hooks and safely updates your system bootloader (grub, systemd-boot).
+🎬 Auto-Fix Codecs: Scans via vainfo/clinfo and patches missing hardware acceleration dependencies (intel-media, nvidia-vaapi) to drop CPU overhead.
 
-🎮 Graphics Driver & Firmware Control Center
-No more broken PPAs, missing RPM Fusion repos, or black-screen anxiety. The Punch Engine interfaces directly with your system's native package manager (pacman, apt, dnf) to abstract away the terminal chaos and deliver a flawless, automated graphics stack setup.
-
-🟢 The NVIDIA Management Suite
-Zero-Config Repositories: Automatically detects, verifies, and maps the correct proprietary driver channels across Arch, Fedora, and Ubuntu.
-
-One-Click Branch Switching: Seamlessly jump between Stable Production, New Feature Beta streams, or Legacy branches without a single terminal command.
-
-Kernel Tweaking: Instantly configures /etc/modprobe.d/ to activate NVIDIA's open-source kernel modules (DKMS) and low-latency synchronization rules.
-
-🔴 The AMD & Mesa Optimization Suite
-Bleeding-Edge Mesa Git: One-click integration to hook into cutting-edge Mesa repositories (like cachyos-extra or kisak-mesa) for day-one game optimization.
-
-Vulkan Engine Selector: Effortlessly toggle your default Vulkan backend between standard RADV and AMD's official proprietary AMDVLK on the fly.
-
-🎬 1-Click Hardware Video Acceleration (VA-API / NVDEC)
-Auto-Fix Codecs: Scans your environment using vainfo and clinfo. If hardware-accelerated video decoding is missing or broken, Proton Punch instantly fetches and patches the required drivers (intel-media, libva-mesa, nvidia-vaapi) to eliminate high CPU usage during playback.
-
-🔌 Unified System Firmware (fwupd)
-Total Ecosystem Updates: Fully integrated with the Linux Vendor Firmware Service. Track, install, and flash updates for your motherboard BIOS, SSD controllers, and gaming peripherals (Logitech, Razer, etc.) directly inside the dashboard.
+🔌 Unified Firmware: Deep fwupd integration to update your motherboard BIOS, SSD controllers, and gaming peripherals right from the dashboard.
