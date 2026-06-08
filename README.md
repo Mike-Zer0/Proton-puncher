@@ -1,2 +1,2 @@
 # Proton-punch
-Proton Punch is an all-in-one Linux performance powerhouse that automates deep system optimization, combining real-time kernel tuning, intelligent RAM management, and a built-in GPU overclocking suite. 
+Proton Punch is an all-in-one Linux performance powerhouse that automates deep system optimization, combining real-time kernel tuning, intelligent RAM management, and a built-in GPU overclocking suite. It will feature options for Bpftune, Autocpu-freq, Profile Sync- daemon enabled, Ananicy Cpp, and many other instant performance tweaks baked into the Proton Punch GUI App Image, Flatpak, and System Packages via pacman, apt, dnf, etc.
