@@ -36,6 +36,7 @@ Fan Curve Editor: Full manual control and automated profiles mapping directly to
 🧠 Intelligent Memory Optimization
 ZRAM Automation: Automatically provisions RAM-based compressed swap space using ultra-fast, modern compressors like zstd or lz4 tailored to your hardware.
 
+
 🎨 The GUI Layout: "Driver Control Center"This page should provide a clean, automated summary of the user's current hardware stack and a simple interactive way to switch or update drivers.+------------------------------------------------------------+
 | [⚡] PROTON PUNCH   |   [DRIVER & FIRMWARE]                |
 +------------------------------------------------------------+
@@ -56,7 +57,28 @@ ZRAM Automation: Automatically provisions RAM-based compressed swap space using 
 +------------------------------------------------------------+
 |  [ Action: Check System Firmware (fwupd) ]                  |
 +------------------------------------------------------------+
-⚙️ How the "Punch" Backend Handles It NativelyBecause your backend maps directly to the host system's package manager (pacman, apt, dnf), the backend daemon can automatically abstract the messy command-line stuff away from the user based on their specific hardware footprint.1. The NVIDIA Management StackHandling NVIDIA drivers on Linux requires a delicate touch because a bad install can leave users looking at a black screen. Your backend can handle:The Repository Lifecycle: On Ubuntu/Debian, it can verify and enable the graphics-drivers/ppa. On Fedora, it enables rpmfusion-nonfree-nvidia-driver. On Arch, it checks for native repository syncs.Driver Branch Switching: Let users safely toggle between the stable Production branch (e.g., v580), New Feature branches, or Legacy streams (like v470 for older cards) without typing a single command.Kernel Module Settings: Instantly write the necessary configuration parameters to /etc/modprobe.d/ to toggle things like NVIDIA's open-source kernel modules (options nvidia NVreg_OpenKernelModules=1) or low-latency sync features.2. The AMD / Mesa Optimization StackSince AMD drivers are baked directly into the Linux kernel and the open-source Mesa stack, you don't "install" an AMD driver like you do on Windows. Instead, this section of Proton Punch becomes a power-user customization layout:Mesa Git Toggling: Provide a one-click toggle to add repositories containing bleeding-edge Mesa builds (like kisak-mesa on Ubuntu or the cachyos-extra repo). This lets AMD users grab immediate, day-one performance optimizations for brand-new game releases.Vulkan Driver Switching: Let users select their preferred Vulkan implementation backend (e.g., toggling between standard RADV and AMD's official proprietary AMDVLK implementation via local environment variables).3. Hardware Video Acceleration (Codecs & VA-API)One of the most annoying quirks of a fresh Linux installation is realizing your GPU isn't utilizing hardware acceleration for video playback because of missing license-restricted codecs.Proton Punch can query the current system setup using tools like vainfo or clinfo.If hardware decoding is missing, a single "Auto-Fix Codecs" button can tell the backend engine to install the necessary decoding packages (like intel-media-driver, libva-mesa-driver, or nvidia-vaapi-driver) seamlessly.4. Unified Peripherals & System Firmware (fwupd)To truly claim the "All-in-One" title, tie your backend into fwupd (the Linux Vendor Firmware Service). This allows your GUI to show users updates for their motherboard BIOS, SSD controllers, wireless chipsets, and Logitech/Razer peripherals right inside the app, saving them from having to jump out to separate desktop environment utility menus.
+
 
 🐧 Custom Kernel Manager
 A dedicated control center to easily track, install, and update performance-focused third-party kernels like CachyOS and Linux-Zen. The Punch Engine automatically handles your native repository hooks and safely updates your system bootloader (grub, systemd-boot).
+
+🎮 Graphics Driver & Firmware Control Center
+No more broken PPAs, missing RPM Fusion repos, or black-screen anxiety. The Punch Engine interfaces directly with your system's native package manager (pacman, apt, dnf) to abstract away the terminal chaos and deliver a flawless, automated graphics stack setup.
+
+🟢 The NVIDIA Management Suite
+Zero-Config Repositories: Automatically detects, verifies, and maps the correct proprietary driver channels across Arch, Fedora, and Ubuntu.
+
+One-Click Branch Switching: Seamlessly jump between Stable Production, New Feature Beta streams, or Legacy branches without a single terminal command.
+
+Kernel Tweaking: Instantly configures /etc/modprobe.d/ to activate NVIDIA's open-source kernel modules (DKMS) and low-latency synchronization rules.
+
+🔴 The AMD & Mesa Optimization Suite
+Bleeding-Edge Mesa Git: One-click integration to hook into cutting-edge Mesa repositories (like cachyos-extra or kisak-mesa) for day-one game optimization.
+
+Vulkan Engine Selector: Effortlessly toggle your default Vulkan backend between standard RADV and AMD's official proprietary AMDVLK on the fly.
+
+🎬 1-Click Hardware Video Acceleration (VA-API / NVDEC)
+Auto-Fix Codecs: Scans your environment using vainfo and clinfo. If hardware-accelerated video decoding is missing or broken, Proton Punch instantly fetches and patches the required drivers (intel-media, libva-mesa, nvidia-vaapi) to eliminate high CPU usage during playback.
+
+🔌 Unified System Firmware (fwupd)
+Total Ecosystem Updates: Fully integrated with the Linux Vendor Firmware Service. Track, install, and flash updates for your motherboard BIOS, SSD controllers, and gaming peripherals (Logitech, Razer, etc.) directly inside the dashboard.
